@@ -82,6 +82,7 @@ define( [ 'zepto' ], function(){
             , "hasUrlParam": hasUrlParam
             , 'urlHostName': urlHostName
             , "addUrlParams": addUrlParams
+            , "getAllUrlParams": getAllUrlParams
             , "ts": function(){ return new Date().getTime(); }
 
 			, winSize: winSize
@@ -227,6 +228,26 @@ define( [ 'zepto' ], function(){
         }
         return _r;
     }
+    function getAllUrlParams( _url ){
+        var _r = {}, _params, i, j, _items;
+        _url = _url || location.href;
+        _url = _url.replace(/[\?]+/g, '?').split('?');
+        if( _url.length > 1 ){
+            _url = _url[1];
+            _params = _url.split('&');
+            if( _params.length ){
+                for( i = 0, j = _params.length; i < j; i++ ){
+                    _items = _params[i].split('=');
+                    _items[0] = decodeURIComponent( _items[0] ) || '';
+                    if( _items[0].trim() ){
+                        _r [ _items[0] ] =  filterXSS( _items[1] || '' ); 
+                    }
+                }
+            }
+        }
+        return _r;
+    }
+
 
     /**
      * 删除URL参数

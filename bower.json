@@ -1,7 +1,7 @@
 {
   "name": "mv.js",
   "main": "mv.js",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "homepage": "https://github.com/openjavascript/mv.js",
   "authors": [
     "qiushaowei <qiushaowei@360.cn>"
