@@ -83,6 +83,7 @@ define( [ 'zepto' ], function(){
             , 'urlHostName': urlHostName
             , "addUrlParams": addUrlParams
             , "getAllUrlParams": getAllUrlParams
+			, "scriptContent": scriptContent
             , "ts": function(){ return new Date().getTime(); }
 
 			, winSize: winSize
@@ -103,6 +104,21 @@ define( [ 'zepto' ], function(){
         }
         , T: {}
     });
+    /**
+     * 获取脚本模板的内容
+     * @method  scriptContent
+     * @param   {selector}  _selector
+     * @return  string
+     * @static
+     */
+    function scriptContent( _selector ){
+        var _r = '';
+        _selector 
+            && ( _selector = $( _selector ) ).length 
+            && ( _r = _selector.html().trim().replace( /[\r\n]/g, '') )
+            ;
+        return _r;
+    }
     /**
      * 获取 window 的 相关大小
      * @method  winSize
