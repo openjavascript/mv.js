@@ -367,6 +367,10 @@ define( [], function(){
      * @static
      */
     function filterXSS( _s ){
+        _s = _s.toString();
+        !_s.length && ( _s = '' );
+        _s = decodeURIComponent( _s );
+
         _s && (
             _s = _s
                     .replace( /</g, '&lt;' )
