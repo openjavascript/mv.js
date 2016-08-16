@@ -1,4 +1,4 @@
-define( [ 'zepto' ], function(){
+define( [], function(){
     /** @namespace V */
     !window.V && ( window.V = {} );
 
