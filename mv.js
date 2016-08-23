@@ -75,6 +75,7 @@ define( [], function(){
             , isMoney: isMoney
             , cloneObject: cloneObject
 
+            , "filterXSS": filterXSS
             , "delUrlParam": delUrlParam
             , "delUrlParams": delUrlParams
             , "getUrlParam": getUrlParam
@@ -244,9 +245,11 @@ define( [], function(){
         }
         return _r;
     }
+
     function getAllUrlParams( _url ){
-        var _r = {}, _params, i, j, _items;
+        var _r = {}, _params, i, j, _items, sharp = '';
         _url = _url || location.href;
+        _url.indexOf('#') > -1 && ( sharp = _url.split('#')[1], _url = _url.split('#')[0] );
         _url = _url.replace(/[\?]+/g, '?').split('?');
         if( _url.length > 1 ){
             _url = _url[1];
@@ -349,15 +352,15 @@ define( [], function(){
         !_params && ( _params = _url, _url = location.href );
         _url.indexOf('#') > -1 && ( sharp = _url.split('#')[1], _url = _url.split('#')[0] );
         for( var k in _params ){
-            _url = delUrlParam(_url, k);
+            _url = V.utils.delUrlParam(_url, k);
+            if( /\#/.test( k ) ) continue;
             _url.indexOf('?') > -1 
                 ? _url += '&' + k +'=' + _params[k]
                 : _url += '?' + k +'=' + _params[k];
         }
         sharp && ( _url += '#' + sharp );
         _url = filterXSS( _url.replace(/\?\&/g, '?' ) );
-        return _url;   
-
+        return _url;  
     }
     /**
      * xss 过滤函数
