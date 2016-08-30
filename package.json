@@ -1,0 +1,25 @@
+{
+  "name": "mv.js",
+  "version": "1.0.1",
+  "description": "test",
+  "main": "mv.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openjavascript/mv.js.git"
+  },
+  "keywords": [
+    "mv.js",
+    "mv",
+    "mvproject",
+    "javascript"
+  ],
+  "author": "suches <suches@btbtd.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/openjavascript/mv.js/issues"
+  },
+  "homepage": "https://github.com/openjavascript/mv.js#readme"
+}
