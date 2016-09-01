@@ -88,6 +88,7 @@ define( [], function(){
             , "ts": function(){ return new Date().getTime(); }
 
 			, winSize: winSize
+            , getFlashObject: getFlashObject
 
         } 
         /** @namespace V#is */
@@ -105,6 +106,20 @@ define( [], function(){
         }
         , T: {}
     });
+    function getFlashObject($id,$name) {
+        $name = $name || $id;
+        var o;
+        if (navigator.appName.indexOf("Microsoft") != -1)//IE
+        {
+            o = document.getElementById($id);
+        }
+        else//NOT IE
+        {
+            o = window.document[$name];
+            if( !o ){ o = $($id); }
+        }
+        return o;
+    }
     /**
      * 获取脚本模板的内容
      * @method  scriptContent
